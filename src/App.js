@@ -1,23 +1,23 @@
 import './styles/main.scss';
 import './App.scss';
 import {useEffect} from "react";
-
-const webapp = window.Telegram.WebApp;
+import {useTelegram} from "./hooks";
+import {Footer, Header} from "./components";
 
 function App() {
-  const onClose = () => {
-    webapp.close()
-  }
+  const {onReady} = useTelegram();
 
   useEffect(() => {
-    console.log(webapp.initDataUnsafe?.user)
-    webapp.ready()
+    onReady()
   }, [])
+
   return (
     <div className="app">
-      <h1 className="title">App</h1>
-      <button onClick={onClose}>Close</button>
-      <span>{webapp.initDataUnsafe?.user?.username}</span>
+      <Header />
+      <main>
+        main
+      </main>
+      <Footer />
     </div>
   );
 }

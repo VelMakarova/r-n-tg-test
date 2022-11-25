@@ -3,7 +3,7 @@ import {useTelegram} from "../../hooks";
 import './header.scss';
 
 export const Header = () => {
-  const {user, onClose} = useTelegram();
+  const {user} = useTelegram();
 
   return (
     <header>

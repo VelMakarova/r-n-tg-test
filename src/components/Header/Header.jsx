@@ -6,10 +6,10 @@ export const Header = () => {
   const {user} = useTelegram();
 
   return (
-    <header>
+    <header className="header">
       <div className="logo"></div>
       <div className="user">
-        {`Hello, ${user.username}`}
+        {`Hello, ${user?.username}`}
       </div>
     </header>
   )

@@ -12,11 +12,11 @@ export const Form = () => {
     mainButton.setParams({
       text: "send data"
     })
-  }, [])
+  }, [mainButton])
 
   useEffect(() => {
     !city || !address ? mainButton.hide() : mainButton.show();
-  }, [city, address])
+  }, [city, address, mainButton])
 
   return (
     <div className="form-page">

@@ -1,10 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./form.scss";
+import {useTelegram} from "../../hooks";
 
 export const Form = () => {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [delivery, setDelivery] = useState("paid");
+  const {tg: {mainButton}} = useTelegram();
+
+  useEffect(() => {
+    mainButton.setParams({
+      text: "send data"
+    })
+  }, [])
+
+  useEffect(() => {
+    !city || !address ? mainButton.hide() : mainButton.show();
+  }, [city, address])
 
   return (
     <div className="form-page">
@@ -23,7 +35,7 @@ export const Form = () => {
           onChange={e => setAddress(e.target.value)}
           placeholder="address"
         />
-        <select className="select" name="delivery" onChange={e => setDelivery(e.target.value)} placeholder={"delivery"}>
+        <select className="select" name="delivery" value={delivery} onChange={e => setDelivery(e.target.value)} placeholder={"delivery"}>
           <option value="paid">paid</option>
           <option value="free">free</option>
         </select>
